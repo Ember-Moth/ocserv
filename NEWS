@@ -1,4 +1,5 @@
 * Version 1.4.2 (unreleased)
+- The bundled llhttp was updated to 9.3.1.
 
 
 * Version 1.4.1 (released 2026-02-28)
@@ -27,7 +28,7 @@
 
 
 * Version 1.4.0 (released 2026-01-04)
-- The bundled llhtp was updated to 9.3.0.
+- The bundled llhttp was updated to 9.3.0.
 - The bundled protobuf-c was updated to 1.5.1.
 - Fixed issues with PAM authentication when combined with pam_sssd (#618)
 - Enhanced the seccomp filters to address issue in testing (#627)
