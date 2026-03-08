@@ -57,7 +57,7 @@ if test -n "$FW_SCRIPT"; then
 	SCRIPTS_TO_TEST="$FW_SCRIPT"
 else
 	SCRIPTS_TO_TEST=""
-	for s in ../src/ocserv-fw-iptables ../src/ocserv-fw-nftables; do
+	for s in "$srcdir/../src/ocserv-fw-iptables" "$srcdir/../src/ocserv-fw-nftables"; do
 		case "$s" in
 			*nftables) tool=nft ;;
 			*)         tool=iptables ;;
