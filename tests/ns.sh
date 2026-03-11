@@ -75,13 +75,17 @@ trap nsfinish EXIT
 
 echo " * Setting up namespaces..."
 set -e
-NSNAME1="ocserv-c-tmp-${$:0:4}"
-NSNAME3="ocserv-c-2-tmp-${$:0:4}"
-NSNAME2="ocserv-s-tmp-${$:0:4}"
-ETHNAME1="oceth-c${$:0:4}"
-ETHNAME2="oceth-s${$:0:4}"
-ETHNAME3="oceth-c-2${$:0:4}"
-ETHNAME4="oceth-s-2${$:0:4}"
+
+# Extract last 9 characters of PID (or entire PID if shorter)
+test ${#$} -ge 9 && pid_trunc="${$: -9}" || pid_trunc=$$
+
+NSNAME1="ocserv-c-tmp-${pid_trunc}"
+NSNAME3="ocserv-c-2-tmp-${pid_trunc}"
+NSNAME2="ocserv-s-tmp-${pid_trunc}"
+ETHNAME1="ocen1c${pid_trunc}"
+ETHNAME2="ocen2s${pid_trunc}"
+ETHNAME3="ocen3c${pid_trunc}"
+ETHNAME4="ocen4s${pid_trunc}"
 
 ${IP} netns add ${NSNAME1}
 ${IP} netns add ${NSNAME2}
