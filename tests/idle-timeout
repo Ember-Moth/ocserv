@@ -26,12 +26,6 @@ PIDFILE=ocserv-pid.$$.tmp
 CPIDFILE=openpid.$$.tmp
 OUTFILE=ban.$$.tmp
 
-. `dirname $0`/random-net.sh
-. `dirname $0`/common.sh
-. `dirname $0`/ns.sh
-
-eval "${GETPORT}"
-
 function finish {
   set +e
   echo " * Cleaning up..."
@@ -42,6 +36,12 @@ function finish {
   test -n "${OUTFILE}" && rm -f ${OUTFILE} >/dev/null 2>&1
 }
 trap finish EXIT
+
+. `dirname $0`/random-net.sh
+. `dirname $0`/common.sh
+. `dirname $0`/ns.sh
+
+eval "${GETPORT}"
 
 echo "Testing whether idle timeout works as expected... "
 
