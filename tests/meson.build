@@ -202,7 +202,7 @@ if get_option('root-tests')
     'test-user-config', 'test-append-routes', 'test-ban',
     'multiple-routes', 'json', 'test-udp-listen-host',
     'test-max-same-1',
-    'apple-ios', 'ipv6-iface', 'test-namespace-listen',
+    'apple-ios', 'ipv6-iface',
     'disconnect-user', 'disconnect-user2', 'terminate-commands',
     'ping-leases', 'test-ban-local', 'test-client-bypass-protocol',
     'ipv6-small-net', 'test-camouflage', 'test-camouflage-norealm',
@@ -226,6 +226,15 @@ if get_option('root-tests')
       workdir:     test_workdir,
     )
   endforeach
+
+  if get_option('namespaces').enabled()
+    test('test-namespace-listen', find_program('test-namespace-listen'),
+      env:         test_env,
+      timeout:     300,
+      is_parallel: false,
+      workdir:     test_workdir,
+    )
+  endif
 
   if radcli_dep.found()
     foreach s : ['radius', 'radius-group', 'radius-multi-group',
