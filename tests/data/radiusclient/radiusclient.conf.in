@@ -33,18 +33,18 @@ acctserver 	localhost
 
 # file holding shared secrets used for the communication
 # between the RADIUS client and server
-servers		./data/radiusclient/servers
+servers		@SRCDIR@/servers
 
 # dictionary of allowed attributes and values
 # just like in the normal RADIUS distributions
-dictionary 	./data/radiusclient/dictionary
+dictionary 	@SRCDIR@/dictionary
 
 # file which holds sequence number for communication with the
 # RADIUS server
 seqfile		./radius.seq.tmp
 
 # file which specifies mapping between ttyname and NAS-Port attribute
-#mapfile		./data/radiusclient/port-id-map
+#mapfile		@SRCDIR@/port-id-map
 
 # default authentication realm to append to all usernames if no
 # realm was explicitly specified by the user

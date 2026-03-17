@@ -74,7 +74,7 @@ ctl_proto = custom_target('ctl-proto',
 http_heads_h = custom_target('http-heads',
   input:   'http-heads.gperf',
   output:  'http-heads.h',
-  command: [gperf, '--global-table', '-t', '@INPUT@'],
+  command: [gperf, '--global-table', '-t', meson.current_source_dir() / 'http-heads.gperf'],
   capture: true,
 )
 

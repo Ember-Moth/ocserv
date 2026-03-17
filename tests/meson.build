@@ -2,8 +2,8 @@ test_inc = [top_inc, src_inc, src_build_inc, common_inc]
 
 test_base_deps = [common_dep, ccan_dep, nettle_dep, talloc_dep, llhttp_dep, protobuf_dep]
 
-# Tests run with cwd = source tests/ so relative paths (./certs/, ./data/) work
-test_workdir = meson.current_source_dir()
+# Tests run with cwd = build tests/ dir; source paths in configs use @SRCDIR@
+test_workdir = meson.current_build_dir()
 
 test_env = environment()
 test_env.set('srcdir',       meson.current_source_dir())
@@ -24,6 +24,10 @@ test_env.set('OCPASSWD',     meson.build_root() / 'src' / 'ocpasswd' / 'ocpasswd
 raddb_build_dir = meson.current_build_dir() / 'data' / 'raddb'
 test_env.set('RADDB_DIR', raddb_build_dir)
 subdir('data/raddb')
+
+radiusclient_build_dir = meson.current_build_dir() / 'data' / 'radiusclient'
+test_env.set('RADIUSCLIENT_DIR', radiusclient_build_dir)
+subdir('data/radiusclient')
 
 # --------------------------------------------------------------------------
 # C unit tests

@@ -50,7 +50,7 @@ fi
 
 # NO_NEED_ROOT implies NEED_SOCKET_WRAPPER
 if test "${NEED_SOCKET_WRAPPER}" = 1 || test "${NO_NEED_ROOT}" = 1;then
-	SOCKDIR="${srcdir}/tmp/sockwrap.$$.tmp"
+	SOCKDIR="sockwrap.$$.tmp"
 	mkdir -p $SOCKDIR
 	export SOCKET_WRAPPER_DIR=$SOCKDIR
 	export SOCKET_WRAPPER_DEFAULT_IFACE=2
@@ -93,7 +93,8 @@ update_config() {
 	       -e 's|@ROUTE2@|'${ROUTE2}'|g' "$file.$$.tmp" \
 	       -e 's|@MATCH_CIPHERS@|'${MATCH_CIPHERS}'|g' "$file.$$.tmp" \
 	       -e 's|@OCCTL_SOCKET@|'${OCCTL_SOCKET}'|g' "$file.$$.tmp" \
-	       -e 's|@LISTEN_NS@|'${LISTEN_NS}'|g' "$file.$$.tmp"
+	       -e 's|@LISTEN_NS@|'${LISTEN_NS}'|g' "$file.$$.tmp" \
+	       -e 's|@RADIUSCLIENT_DIR@|'${RADIUSCLIENT_DIR}'|g' "$file.$$.tmp"
 	CONFIG="$file.$$.tmp"
 }
 
