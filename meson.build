@@ -32,7 +32,7 @@ add_project_arguments('-D_GNU_SOURCE', language: 'c')
 # Required tools
 # --------------------------------------------------------------------------
 
-gperf    = find_program('gperf')
+gperf    = find_program('gperf', required: false)
 protoc_c = find_program('protoc-c')
 ipcalc   = find_program(['ipcalc', 'ipcalc-ng'], required: true)
 

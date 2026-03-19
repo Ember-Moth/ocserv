@@ -236,7 +236,7 @@ Fedora:
   - ninja -C build -j$JOBS
   - COVERAGE=1 VERBOSE=1 meson test -C build --num-processes $JOBS --no-rebuild
   - ninja -C build coverage
-  coverage: '/lines[.]+: \d+\.\d+/'
+  coverage: '/lines[.]+: (\d+\.\d+)/'
   tags:
   - saas-linux-medium-amd64
   except:
@@ -407,7 +407,7 @@ codingstyle/Fedora:
   stage: preliminaries
   image: $CI_REGISTRY/$BUILD_IMAGES_PROJECT:$FEDORA_BUILD
   script:
-  - find src/ tests/ -name '*.[ch]'| grep -Ev '^(src/http-heads.h|src/ipc.pb-c|src/ctl.pb-c|src/pcl|src/protobuf|src/ccan|src/gnulib|src/inih|src/llhttp)'| xargs -I{} clang-format -style=file --dry-run {} -Werror
+  - find src/ tests/ -name '*.[ch]'| grep -Ev '^(src/http-heads.c|src/ipc.pb-c|src/ctl.pb-c|src/pcl|src/protobuf|src/ccan|src/gnulib|src/inih|src/llhttp)'| xargs -I{} clang-format -style=file --dry-run {} -Werror
   tags:
   - saas-linux-small-amd64
   except:

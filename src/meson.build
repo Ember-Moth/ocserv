@@ -71,12 +71,17 @@ ctl_proto = custom_target('ctl-proto',
 )
 
 # gperf HTTP header table
-http_heads_h = custom_target('http-heads',
-  input:   'http-heads.gperf',
-  output:  'http-heads.h',
-  command: [gperf, '--global-table', '-t', meson.current_source_dir() / 'http-heads.gperf'],
-  capture: true,
-)
+if gperf.found()
+  http_heads_c = custom_target('http-heads',
+    input:   'http-heads.gperf',
+    output:  'http-heads.c',
+    command: [gperf, '--global-table', '-t', '@INPUT@', '--output-file', '@OUTPUT@'],
+  )
+elif fs.exists('http-heads.c')
+  http_heads_c = files('http-heads.c')
+else
+  error('gperf not found and no pre-generated http-heads.c present')
+endif
 
 # ASN.1 (GSSAPI / KKDCP)
 kkdcp_asn1 = []
@@ -212,7 +217,7 @@ endif
 # ocserv
 # --------------------------------------------------------------------------
 
-ocserv_sources = core_sources + auth_sources + acct_sources + [http_heads_h] + files(
+ocserv_sources = core_sources + auth_sources + acct_sources + files(
   'main.c',
   'main-auth.c',
   'main-ban.c',
@@ -249,7 +254,7 @@ executable('ocserv', ocserv_sources,
 # ocserv-worker
 # --------------------------------------------------------------------------
 
-worker_sources = core_sources + [http_heads_h] + files(
+worker_sources = core_sources + [http_heads_c] + files(
   'html.c',
   'worker.c',
   'worker-auth.c',

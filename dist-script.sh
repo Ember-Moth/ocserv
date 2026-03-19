@@ -24,14 +24,14 @@ else
 fi
 
 # --------------------------------------------------------------------------
-# gperf: http-heads.h
+# gperf: http-heads.c
 # --------------------------------------------------------------------------
 
 if command -v gperf >/dev/null 2>&1; then
     gperf --global-table -t "$DISTROOT/src/http-heads.gperf" \
-        > "$DISTROOT/src/http-heads.h"
+        --output-file "$DISTROOT/src/http-heads.c"
 else
-    echo "dist-script: WARNING: gperf not found, skipping http-heads.h generation" >&2
+    echo "dist-script: WARNING: gperf not found, skipping http-heads.c generation" >&2
 fi
 
 # --------------------------------------------------------------------------
