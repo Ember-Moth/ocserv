@@ -205,6 +205,13 @@ if get_option('tun-tests')
   endforeach
 endif
 
+# Generate pam-acct PAM service config whenever pam_wrapper is available.
+# test-pass-pam-acct is a root test so it lives in root_scripts below, but the
+# generated builddir/data/pam-acct/ocserv is needed at runtime.
+if cwrap_pam_dep.found()
+  subdir('data/pam-acct')
+endif
+
 # --------------------------------------------------------------------------
 # Shell script tests – require root / namespaces
 # --------------------------------------------------------------------------
@@ -224,6 +231,8 @@ if get_option('root-tests')
     'ipv6-small-net', 'test-camouflage', 'test-camouflage-norealm',
     'vhost-traffic', 'defvhost-traffic', 'session-timeout',
     'test-occtl', 'no-ipv6-ocv3',
+    # PAM accounting test (needs root for full VPN + pam_wrapper for fake PAM)
+    'test-pass-pam-acct',
     # cipher / traffic tests
     'traffic', 'bandwidth', 'lz4-compression', 'lzs-compression',
     'aes256-cipher', 'aes128-cipher',
