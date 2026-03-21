@@ -205,6 +205,10 @@ if get_option('tun-tests')
   endforeach
 endif
 
+if have_cwrap_pam
+  subdir('data/pam-acct')
+endif
+
 # --------------------------------------------------------------------------
 # Shell script tests – require root / namespaces
 # --------------------------------------------------------------------------
@@ -242,6 +246,16 @@ if get_option('root-tests')
       workdir:     test_workdir,
     )
   endforeach
+
+  # PAM accounting test requires PAM support compiled in and pam_wrapper
+  if have_cwrap_pam
+    test('test-pass-pam-acct', find_program('test-pass-pam-acct'),
+      env:         test_env,
+      timeout:     300,
+      is_parallel: false,
+      workdir:     test_workdir,
+    )
+  endif
 
   if get_option('namespaces').enabled()
     test('test-namespace-listen', find_program('test-namespace-listen'),
