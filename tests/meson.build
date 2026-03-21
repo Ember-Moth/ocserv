@@ -225,7 +225,7 @@ if get_option('root-tests')
     'vhost-traffic', 'defvhost-traffic', 'session-timeout',
     'test-occtl', 'no-ipv6-ocv3',
     # cipher / traffic tests
-    'traffic', 'lz4-compression', 'lzs-compression',
+    'traffic', 'bandwidth', 'lz4-compression', 'lzs-compression',
     'aes256-cipher', 'aes128-cipher',
     'oc-aes256-gcm-cipher', 'oc-aes128-gcm-cipher',
     'ac-aes128-gcm-cipher', 'ac-aes256-gcm-cipher',
