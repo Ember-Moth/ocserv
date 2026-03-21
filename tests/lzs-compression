@@ -94,6 +94,10 @@ echo " * ping remote address"
 
 ${CMDNS1} ping -c 3 ${VPNADDR}
 
+echo " * ping with large compressible payload (exercises LZS compression)"
+
+${CMDNS1} ping -c 5 -s 1000 -p aa ${VPNADDR}
+
 ${CMDNS2} iperf3 -s -D -1
 
 sleep 2
