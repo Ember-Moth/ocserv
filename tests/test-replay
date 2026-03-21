@@ -35,8 +35,8 @@ fi
 
 echo "Testing whether replay of DTLS hello breaks client session... "
 
-PIDFILE1="${srcdir}/ci$$-1.pid.tmp"
-PIDFILE2="${srcdir}/ci$$-2.pid.tmp"
+PIDFILE1="ci$$-1.pid.tmp"
+PIDFILE2="ci$$-2.pid.tmp"
 TCPDUMP_FILE="${srcdir}/dtls_hello.pcap"
 rm -f "${PIDFILE1}" "${PIDFILE2}"
 

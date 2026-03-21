@@ -30,8 +30,8 @@ eval "${GETPORT}"
 
 echo "Testing ocserv and user route application... "
 
-TMPFILE1=${srcdir}/test-user-config.tmp
-TMPFILE2=${srcdir}/test-user-config-2.tmp
+TMPFILE1=test-user-config.$$.tmp
+TMPFILE2=test-user-config-2.$$.tmp
 
 rm -f ${TMPFILE1}
 rm -f ${TMPFILE2}

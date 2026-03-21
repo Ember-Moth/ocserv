@@ -3,6 +3,7 @@
 - occtl: Added 'terminate user', 'terminate id', and 'terminate session'
   commands that disconnect users and invalidate their session cookies,
   preventing automatic reconnection (#689)
+- Replaced autoconf/automake build system with meson (#699)
 
 
 * Version 1.4.1 (released 2026-02-28)

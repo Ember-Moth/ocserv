@@ -25,6 +25,16 @@ OCCTL_SOCKET=./occtl-ban-$$.socket
 PIDFILE=ocserv-pid.$$.tmp
 OUTFILE=ban.$$.tmp
 
+function finish {
+  set +e
+  echo " * Cleaning up..."
+  test -n "${PID}" && kill ${PID} >/dev/null 2>&1
+  test -n "${PIDFILE}" && rm -f ${PIDFILE} >/dev/null 2>&1
+  test -n "${CONFIG}" && rm -f ${CONFIG} >/dev/null 2>&1
+  test -n "${OUTFILE}" && rm -f ${OUTFILE} >/dev/null 2>&1
+}
+trap finish EXIT
+
 . `dirname $0`/common.sh
 . `dirname $0`/random-net.sh
 . `dirname $0`/ns.sh
@@ -35,16 +45,6 @@ update_config test-ban.config
 if test "$VERBOSE" = 1;then
 DEBUG="-d 3"
 fi
-
-function finish {
-  set +e
-  echo " * Cleaning up..."
-  test -n "${PID}" && kill ${PID} >/dev/null 2>&1
-  test -n "${PIDFILE}" && rm -f ${PIDFILE} >/dev/null 2>&1
-  test -n "${CONFIG}" && rm -f ${CONFIG} >/dev/null 2>&1
-  test -n "${OUTFILE}" && rm -f ${OUTFILE} >/dev/null 2>&1
-}
-trap finish EXIT
 
 echo "Testing whether ban operates as expected... "
 

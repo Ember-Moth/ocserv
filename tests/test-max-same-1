@@ -27,8 +27,8 @@ eval "${GETPORT}"
 
 echo "Testing whether max-same-clients=1 allows cookie reuse... "
 
-PIDFILE1="${srcdir}/ci$$-1.pid.tmp"
-PIDFILE2="${srcdir}/ci$$-2.pid.tmp"
+PIDFILE1="ci$$-1.pid.tmp"
+PIDFILE2="ci$$-2.pid.tmp"
 rm -f "${PIDFILE1}" "${PIDFILE2}"
 
 function finish {
