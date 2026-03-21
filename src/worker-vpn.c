@@ -28,7 +28,7 @@ static inline void worker_exit(int status)
 	_exit(status);
 }
 #else
-#  define worker_exit(s) _exit(s)
+#define worker_exit(s) _exit(s)
 #endif
 
 #include <gnutls/gnutls.h>
